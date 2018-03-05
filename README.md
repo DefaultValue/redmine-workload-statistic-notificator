@@ -7,7 +7,7 @@ Plugin provides functionality for sending Slack workload statistic notifications
 1. Clone this plugin to your Redmine plugins directory:
 
 ```bash
-user@user:/path/to/redmine/plugins$ git clone git@gitlab.allbugs.info:alexandrz/workload_statistic_notificator workload_statistic_notificator
+user@user:/path/to/redmine/plugins$ git clone git@github.com:DefaultValue/redmine-workload-statistic-notificator.git workload_statistic_notificator
 ```
 
 2. Install `httpclient` dependency, by running:
