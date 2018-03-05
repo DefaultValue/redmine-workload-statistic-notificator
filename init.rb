@@ -6,6 +6,7 @@ Redmine::Plugin.register :workload_statistic_notificator do
   description 'Plugin provides functionality for sending Slack workload statistic notifications'
   version '1.0'
   author_url 'http://default-value.com/'
+  url 'https://github.com/DefaultValue/redmine-workload-statistic-notificator'
 
   settings \
       :default => {
