@@ -1,0 +1,69 @@
+<div class="box tabular settings">
+  <p>
+    <label for="settings_slack_url"><%= l(:label_slack_url) %></label>
+    <input type="text" id="settings_slack_url" size=100 value="<%= settings['slack_url'] %>" name="settings[slack_url]"/>
+  </p>
+
+  <p>
+    <label for="settings_icon"><%= l(:label_slack_icon) %></label>
+    <input type="text" id="settings_icon"  size=100 value="<%= settings['slack_icon'] %>" name="settings[slack_icon]"/>
+  </p>
+
+  <p>
+    <label for="day_statistic_channel"><%= l(:label_slack_channel) %></label>
+    <input type="text" id="day_statistic_channel" value="<%= settings['day_statistic_channel'] %>" name="settings[day_statistic_channel]"/>
+  </p>
+</div>
+
+<div class="box tabular settings">
+  <p>
+    <label for="day_statistic_time"><%= l(:label_time_to_notify_at) %></label>
+    <input type="text" id="day_statistic_time" value="<%= settings['day_statistic_time'] %>" name="settings[day_statistic_time]" size="5"/>
+    <span class="tip">(<%= l(:tip_time_to_notify_at) %>. Note: current application time zone is - <%= Time.now.strftime("%Z") %>)</span>
+  </p>
+
+  <p>
+    <label for="day_statistic_enable"><%= l(:label_enable_notification) %></label>
+    <input type="checkbox" id="day_statistic_enable" value="<%= settings['day_statistic_enable'] %>" name="settings[day_statistic_enable]" <% if settings['day_statistic_enable'] %> checked="checked" <% end %>/>
+  </p>
+</div>
+
+<div class="box tabular settings">
+  <p>
+    <label><%= l(:label_internal_project_attribute) %>:</label>
+    <% get_project_custom_attributes.each do |attr| %>
+      <label class="block">
+        <% if defined?(settings) && settings && settings.include?('is_internal_project_attr') && settings['is_internal_project_attr'] == attr[0] %>
+          <%= radio_button_tag 'settings[is_internal_project_attr]', attr[0], true %>
+        <% else %>
+          <%= radio_button_tag 'settings[is_internal_project_attr]', attr[0], false %>
+        <% end %>
+        <%= attr[0] %>
+      </label>
+    <% end %>
+  </p>
+</div>
+
+<div class="box tabular settings">
+  <p>
+    <label for="daily_working_hours"><%= l(:label_daily_working_hours) %></label>
+    <input type="text" id="daily_working_hours" value="<%= settings['daily_working_hours'] %>" name="settings[daily_working_hours]" size="5"/>
+  </p>
+  <p>
+    <label><%= l(:label_manage_users) %>:</label>
+    <table style="width: 50%; margin: 0 auto;">
+      <tr>
+        <th><%= l(:label_name) %></th>
+        <th><%= l(:label_hours_rate) %></th>
+        <th><%= l(:label_include_to_report) %></th>
+      </tr>
+      <% get_all_active_users.each do |user| %>
+         <tr>
+            <td><%= user.firstname %> <%= user.lastname %></td>
+            <td align="center"><input type="text" id="user_<%= user.id %>" <% if settings["user_#{user.id}"] %>value="<%= settings["user_#{user.id}"] %>"<% end %> name="settings[user_<%= user.id %>]" size="5"/></td>
+            <td align="center"><input type="checkbox" id="user_enabled_<%= user.id %>" <% if settings["user_enabled_#{user.id}"] %>value="<%= settings["user_enabled_#{user.id}"] %>"<% end %> name="settings[user_enabled_<%= user.id %>]" <% if settings["user_enabled_#{user.id}"] %> checked="checked" <% end %>/></td>
+          </tr>
+      <% end %>
+    </table>
+  </p>
+</div>
