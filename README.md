@@ -18,7 +18,7 @@ user@user:/path/to/redmine/plugins/workload_statistic_notificator$ bundle instal
    
 3. Restart Redmine to check plugin availability and configure its options.
 
-4. Set up cron task for clearing 'Time for today' field value before business day starts (for instance: at 00:10):
+4. Set up cron task:
 ```
 *   *    *    *    *    path/to/redmine/bin/rake send_day_workload_statistic RAILS_ENV=production
 ``` 
