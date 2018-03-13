@@ -29,7 +29,9 @@ module StatisticHelper
         SUM(ext_spend_hours.hours) AS ext_spend_hours,
         SUM(int_spend_hours.hours) AS int_spend_hours
       FROM users
-        LEFT JOIN (SELECT *
+        LEFT JOIN (SELECT
+                     time_entries.user_id as user_id,
+                     SUM(time_entries.hours) as hours
                    FROM time_entries
                    WHERE spent_on = CURDATE()
                          AND time_entries.project_id IN (SELECT custom_values.customized_id
@@ -39,9 +41,12 @@ module StatisticHelper
                                                                                   WHERE custom_fields.type = 'ProjectCustomField' AND
                                                                                         custom_fields.name = #{ActiveRecord::Base.sanitize(internal_project_attr)}) AND
                                                                                         custom_values.value != '1')
+                   GROUP BY time_entries.user_id
                   ) AS ext_spend_hours
           ON users.id = ext_spend_hours.user_id
-        LEFT JOIN (SELECT *
+        LEFT JOIN (SELECT
+                     time_entries.user_id as user_id,
+                     SUM(time_entries.hours) as hours
                    FROM time_entries
                    WHERE spent_on = CURDATE()
                          AND time_entries.project_id IN (SELECT custom_values.customized_id
@@ -51,6 +56,7 @@ module StatisticHelper
                                                                                   WHERE custom_fields.type = 'ProjectCustomField' AND
                                                                                         custom_fields.name = #{ActiveRecord::Base.sanitize(internal_project_attr)}) AND
                                                                                         custom_values.value = '1')
+                   GROUP BY time_entries.user_id
                   ) AS int_spend_hours
           ON users.id = int_spend_hours.user_id
       WHERE users.id IN  #{str_arr}
