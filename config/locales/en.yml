@@ -1,17 +1,17 @@
 en:
   label_slack_url: Slack URL
-  label_slack_icon : Slack icon
+  label_slack_icon : Link to Slack icon
   label_slack_channel : Slack channel
 
-  label_time_to_notify_at: Time to notify at
-  label_enable_notification: Enable notification
+  label_time_to_notify_at: Send notifications at
+  label_enable_notification: Enable notifications
 
   label_internal_project_attribute: Internal project attribute
 
-  label_daily_working_hours: Daily working hours
-  label_manage_users: Manage users
+  label_daily_working_hours: Work hours per day
+  label_manage_users: Send reports on
   label_name: Name
-  label_hours_rate: Hours rate
-  label_include_to_report: Include to report
+  label_hours_rate: Expected billable hours
+  label_include_to_report: Include into the report
 
-  tip_time_to_notify_at: Specify time in format HH:MM
+  tip_time_to_notify_at: Specify time in HH:MM format

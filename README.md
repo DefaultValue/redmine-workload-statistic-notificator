@@ -1,6 +1,6 @@
 # Workload Statistic notificator plugin
 
-Plugin provides functionality for sending Slack workload statistic notifications
+Plugin provides functionality for sending workload statistics notifications to Slack 
 
 ## Installation
 
