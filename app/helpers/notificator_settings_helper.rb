@@ -15,7 +15,7 @@ module NotificatorSettingsHelper
   end
 
   def get_all_active_users
-    users = User.where(status: 1).all
+    User.where(status: 1).order(:firstname => :asc).order(:lastname => :asc).all
   end
 
   def get_user_notification_settings
